@@ -15,15 +15,12 @@ namespace Lesson2
            
             Console.WriteLine("What is your gender? (M/F)");
             string gender = Console.ReadLine();
-            gender.ToLower();
-
+            gender = gender.ToLower();
 
             Console.WriteLine("Are you married? (Y/N)");
             string marriageStatus = Console.ReadLine();
-            marriageStatus.ToLower();
-
-
-
+            marriageStatus = marriageStatus.ToLower();
+            
             if (gender == "f" && marriageStatus == "y")
             {
                 Console.WriteLine($"Nice to meet you Mrs {name}");
