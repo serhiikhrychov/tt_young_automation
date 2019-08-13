@@ -43,6 +43,10 @@ namespace Lesson2
                    Console.WriteLine("Age cannot be a negative value");
                    break;
 
+                //case int userAge when userAge = 0:
+                //    Console.WriteLine($"Error. {age} is not valid age!");
+                //    break;
+
                 case int userAge when userAge < 18:
                     Console.WriteLine($"Bad. {age} is not allowed on this site!");
                     break;
