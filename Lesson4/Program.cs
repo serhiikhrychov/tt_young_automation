@@ -9,52 +9,89 @@ namespace Lesson4
 {
     class Program
     {
+
+      static double sum = 0;
+      static double[] odds = new double[30];
+      static double[] bets = new double[30];
+
         static void Main(string[] args)
         {
-            int[] numbers = new int[5];
+        
+            Random rand = new Random();
 
-            numbers[0] = 0;
-            numbers[1] = 1;
-            numbers[2] = 2;
-            numbers[3] = 3;
-            numbers[4] = 4;
-
-            int[] numbers2 = new int[5];
-
-            numbers[0] = 0;
-            numbers[1] = 1;
-            numbers[2] = 2;
-            numbers[3] = 3;
-            numbers[4] = 4;
-
-
-            int max = numbers[0];
-            for (int i = 1; i < numbers.Length; i++)
+            for (int i = 0; i <= 29; i++)
             {
-                if (numbers[i] > max)
-                    max = numbers[i];
+                double odd = 1.1 + rand.NextDouble() * (10.1 - 1.1);
+                odds[i] = Math.Round(odd, 2);
+
             }
 
-            int max2 = numbers2[0];
-            for (int i = 1; i < numbers2.Length; i++)
+            for (int i = 0; i < bets.Length; i++)
             {
-                if (numbers2[i] > max)
-                    max = numbers2[i];
-            }
-           
+                Console.WriteLine($"Make your bet for game {i + 1} with odd {odds[i]}");
+                int userBet = int.Parse(Console.ReadLine());
+                bets[i] = userBet * odds[i];
+                
+                if (userBet == 0)
+                {
+                    break;
+                }
 
+            }
+
+            var max = FindMaxValue(bets);
+            var min = FindMinValue(bets);
+            sum = FindSumOfBets(bets);
+            PrintPossibleWin(bets);
+
+            
+           Console.WriteLine($"Your bets sum is {sum} your minWin is {min} your maxWin is {max}");
+            Console.ReadKey();
         }
 
-        static int Max(int[] input)
+        static double FindMinValue(double[] input)
         {
-            int max = input[0];
-
+            double minValue = input[0];
             for (int i = 1; i < input.Length; i++)
             {
-                if (input[i] > max)
-                    max = input[i];
+                if (input[i] == 0)
+                    break;
+                if (input[i] < minValue)
+                    minValue = input[i];
             }
-            return max;
+
+            return minValue;
+        }
+
+        static double FindMaxValue(double[] input)
+        {
+            double maxValue = input[0];
+            for (int i = 1; i < input.Length; i++)
+            {
+                if (input[i] > maxValue)
+                    maxValue = input[i];
+                if (input[i] == 0)
+                    break;
+            }
+            return maxValue;
+        }
+
+        static void PrintPossibleWin(double[] input)
+        {
+            Console.WriteLine("Here the list of your possible win:");
+            foreach (var t in input)
+            {
+                if (t != 0)
+                    Console.WriteLine(t);
+            }
+        }
+
+        static double FindSumOfBets(double[] input)
+        {
+            foreach (var i in input)
+                sum += i;
+
+            return sum;
         }
     }
 }
