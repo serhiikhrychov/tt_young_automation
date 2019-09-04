@@ -9,10 +9,11 @@ namespace Lesson6
     class Program
     {
 
-        static double sum = 0;
+        static double sumOfBets;
         static double[] odds = new double[30];
         static double[] bets = new double[30];
         static double account;
+        static double userWinBet;
 
         static void Main(string[] args)
         {
@@ -26,16 +27,17 @@ namespace Lesson6
 
             }
 
+            Console.WriteLine($"Before you make your bet please update your balance");
+            account = double.Parse(Console.ReadLine());
+            User newUser = new User();
+            newUser.bankAccount.Deposit(account);
+            Console.WriteLine($"Your balance is {newUser.bankAccount.GetBalance()}");
+
+            link:
+
             for (int i = 0; i < bets.Length; i++)
             {
-
-                Console.WriteLine($"Before you make your bet please update your balance");
-                account = double.Parse(Console.ReadLine());
-                User newUser = new User();
-                newUser._bankAccount.Deposit(10);
-                Console.WriteLine($"Your balance is {newUser._bankAccount.GetBalance()}");
-
-
+                
                 Console.WriteLine($"Make your bet for game {i + 1} with odd {odds[i]}");
                 int userBet = int.Parse(Console.ReadLine());
                 bets[i] = userBet * odds[i];
@@ -47,103 +49,39 @@ namespace Lesson6
 
             }
 
-            var max = FindMaxValue(bets);
-            var min = FindMinValue(bets);
-            sum = FindSumOfBets(bets);
-            PrintPossibleWin(bets);
+            var max = MathHelper.FindMaxValue(bets);
+            var min = MathHelper.FindMinValue(bets);
+            sumOfBets = MathHelper.FindSumOfBets(bets);
+            MathHelper.PrintPossibleWin(bets);
+            userWinBet = MathHelper.FindWinBet(bets);
 
 
-            Console.WriteLine($"Your bets sum is {sum} your minWin is {min} your maxWin is {max}");
+            Console.WriteLine($"Your bets sum is {sumOfBets} your minWin is {min} your maxWin is {max}");
+            Console.WriteLine($"Your winBet is {userWinBet}");
+
+            newUser.bankAccount.Deposit(userWinBet);
+            Console.WriteLine($"Your balance is {newUser.bankAccount.GetBalance()}");
+
+            Console.WriteLine("Do you want to withdraw your win from your account (y/n)");
+            string withdrawOrNot = Console.ReadLine();
+
+            if (withdrawOrNot == "y")
+            {
+                Console.WriteLine("Please set amount which you want to withdraw");
+                int amountOfWithdraw = int.Parse(Console.ReadLine());
+                newUser.bankAccount.Withdraw(amountOfWithdraw);
+                Console.WriteLine($"Your balance is {newUser.bankAccount.GetBalance()}");
+            }
+            else
+            {
+                Console.WriteLine("Let's play more");
+                goto link;
+            }
+
             Console.ReadKey();
         }
 
-        static double FindMinValue(double[] input)
-        {
-            double minValue = input[0];
-            for (int i = 1; i < input.Length; i++)
-            {
-                if (input[i] == 0)
-                    break;
-                if (input[i] < minValue)
-                    minValue = input[i];
-            }
-
-            return minValue;
-        }
-
-        static double FindMaxValue(double[] input)
-        {
-            double maxValue = input[0];
-            for (int i = 1; i < input.Length; i++)
-            {
-                if (input[i] > maxValue)
-                    maxValue = input[i];
-                if (input[i] == 0)
-                    break;
-            }
-            return maxValue;
-        }
-
-        static void PrintPossibleWin(double[] input)
-        {
-            Console.WriteLine("Here the list of your possible win:");
-            foreach (var t in input)
-            {
-                if (t != 0)
-                    Console.WriteLine(t);
-            }
-        }
-
-        static double FindSumOfBets(double[] input)
-        {
-            foreach (var i in input)
-                sum += i;
-
-            return sum;
-        }
     }
 
 
-    class User
-    {
-        public string name;
-        public string lastName;
-        private string nickName;
-        private string password;
-        private int age;
-        public BankAccount _bankAccount;
-
-        public User(/*string newName,double bankAccount*/)
-        {
-            // name = newName;
-            _bankAccount = new BankAccount();
-        }
-
-        public string FullName
-        {
-            get { return name + " " + lastName; }
-        }
-
-        public string GetName()
-        {
-            return name;
-        }
-
-        public void SetName(string newName)
-        {
-            name = newName;
-        }
-
-        public void SetPassword(string newPassword)
-        {
-            password = newPassword;
-        }
-
-        public bool IsCorrectPassword(string passwordForComparation)
-        {
-            bool result = password == passwordForComparation;
-
-            return result;
-        }
-    }
 }

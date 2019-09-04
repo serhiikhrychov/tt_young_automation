@@ -8,38 +8,7 @@ using System.Xml.Serialization.Configuration;
 
 namespace Lesson5
 {
-    //class Program
-    //{
-    //    static void Main(string[] args)
-    //    {
-    //        /*User ukrainian = new User();
-    //        ukrainian.name = "Serhii";
-    //        ukrainian.lastName = "Test";
-    //        ukrainian.age = 18;
-
-    //        User american = new User();
-    //        american.name = "John";
-    //        american.lastName = "TestAmer";
-    //        american.age = 7;
-    //        american.SetPassword("yourNewPass");
-
-    //        Console.WriteLine(ukrainian.name + " " + ukrainian.lastName + " " + ukrainian.age);
-    //        Console.WriteLine(american.name + " " + american.lastName + " " + american.age);
-
-    //        american.lastName = "Pupkin";
-
-    //        Console.WriteLine(american.name + " " + american.lastName + " " + american.age);*/
-    //        User user = new User();
-    //        User user2 = new User("Petya");
-    //        //user.name = "AAA";
-    //        user.lastName = "BBB";
-    //        Console.WriteLine(user.FullName);
-    //        Console.WriteLine(user2.FullName);
-    //        Console.ReadLine();
-    //    }
-    //}
-
-
+ 
     class Program
     {
 
@@ -158,7 +127,7 @@ namespace Lesson5
     {
         public string name;
         public string gender;
-        private string password { get; set; }
+        private string _password; 
         public int age;
     
       
@@ -170,12 +139,12 @@ namespace Lesson5
      
         public void SetPassword(string newPassword)
         {
-            password = newPassword;
+            _password = newPassword;
         }
 
         public bool IsCorrectPassword(string passwordForComparation)
         {
-             bool CheckPass = password == passwordForComparation;
+             bool CheckPass = _password == passwordForComparation;
 
               return CheckPass;
 

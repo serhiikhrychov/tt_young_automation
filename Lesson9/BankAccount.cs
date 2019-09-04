@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lesson6
+namespace Lesson9
 {
     class BankAccount
     {
         private double _balance;
 
+  
         public double GetBalance()
         {
             return _balance;
@@ -23,7 +24,7 @@ namespace Lesson6
             }
             else
             {
-               _balance += money;
+                _balance += money;
             }
         }
 

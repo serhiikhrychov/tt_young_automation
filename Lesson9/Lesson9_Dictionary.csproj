@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{13C382E3-E47A-49F8-8680-DD41AA83BC1D}</ProjectGuid>
+    <ProjectGuid>{6D1ABE8F-3849-453E-B3D8-A556AA243128}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Lesson6</RootNamespace>
-    <AssemblyName>Lesson6</AssemblyName>
+    <RootNamespace>Lesson9</RootNamespace>
+    <AssemblyName>Lesson9</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -44,7 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BankAccount.cs" />
-    <Compile Include="MathHelper .cs" />
+    <Compile Include="MathHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="User.cs" />
